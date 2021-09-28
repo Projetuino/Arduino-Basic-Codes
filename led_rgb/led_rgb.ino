@@ -1,45 +1,37 @@
-const int vermelho = 9;
-const int azul = 11;
-const int verde = 10;
-const int tempo = 1000;
+const int pinoR = 9;
+const int pinoG = 10;
+const int pinoB = 11;
+const int tempo_espera = 1000;
 const int tempo_transicao = 2000;
-int vermelho_anterior = 0;
-int azul_anterior = 0;
-int verde_anterior = 0;
+int r_aux = 0;
+int g_aux = 0;
+int b_aux = 0;
 
 void setup() {
-  pinMode(vermelho, OUTPUT);
-  pinMode(azul, OUTPUT);
-  pinMode(verde, OUTPUT);
+  pinMode(pinoR, OUTPUT);
+  pinMode(pinoG, OUTPUT);
+  pinMode(pinoB, OUTPUT);
 }
 
 void loop() {
-  cor(0, 0, 0);
-  delay(tempo);
-  cor(0, 0, 255);
-  delay(tempo);
-  cor(0, 255, 0);
-  delay(tempo);
-  cor(0, 255, 255);
-  delay(tempo);
-  cor(255, 0, 0);
-  delay(tempo);
-  cor(255, 0, 255);
-  delay(tempo);
-  cor(255, 255, 0);
-  delay(tempo);
-  cor(255, 255, 255);
-  delay(tempo);
+  cor(0, 0, 255); //azul
+  cor(0, 255, 0); //verde
+  cor(0, 255, 255); //ciano
+  cor(255, 0, 0); //vermelha
+  cor(255, 0, 255); //magenta
+  cor(255, 255, 0); //amarela
+  cor(255, 255, 255); //branca
 }
 
-void cor(int red, int green, int blue) {
+void cor(int r, int g, int b) {
   for (int i = 0; i <= 255; i++) {
-    analogWrite(vermelho, vermelho_anterior + ((red - vermelho_anterior) / 255)*i);
-    analogWrite(azul, azul_anterior + ((blue - azul_anterior) / 255)*i);
-    analogWrite(verde, verde_anterior + ((green - verde_anterior) / 255)*i);
+    analogWrite(pinoR, r_aux + ((r - r_aux) / 255)*i);
+    analogWrite(pinoG, g_aux + ((g - g_aux) / 255)*i);
+    analogWrite(pinoB, b_aux + ((b - b_aux) / 255)*i);
     delay(tempo_transicao / 255);
   }
-  vermelho_anterior = red;
-  azul_anterior = blue;
-  verde_anterior = green;
+  r_aux = r;
+  g_aux = g;
+  b_aux = b;
+  delay(tempo_espera);
 }
